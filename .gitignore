@@ -2,7 +2,6 @@
 .env
 venv/
 venv2/
-oscar/
 node_modules/
 archive/
 .ropeproject/
