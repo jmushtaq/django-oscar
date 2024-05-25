@@ -1,0 +1,8 @@
+Django==4.2.11
+django-oscar==3.2.4
+sorl-thumbnail==12.9.0
+pycountry==23.12.11
+ipython==8.12.3
+django-extensions==3.2.3
+django-confy==1.0.4
+psycopg2==2.9.9
