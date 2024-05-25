@@ -27,8 +27,12 @@ SECRET_KEY = 'django-insecure-co5-qdqnhm@r%__(db8)0n&ti@j=1i&v3i38aep5tvutv&u^os
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+# Show Toolbar for these IP's
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 # Application definition
 
@@ -80,6 +84,8 @@ INSTALLED_APPS = [
     'treebeard',
     'sorl.thumbnail',   # Default thumbnail backend, can be replaced
     'django_tables2',
+
+    'debug_toolbar',
 ]
 
 SITE_ID = 1
@@ -95,6 +101,8 @@ MIDDLEWARE = [
 
     'oscar.apps.basket.middleware.BasketMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = (

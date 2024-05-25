@@ -11,4 +11,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include(apps.get_app_config('oscar').urls[0])),
+
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
