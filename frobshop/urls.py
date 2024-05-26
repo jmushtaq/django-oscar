@@ -13,4 +13,6 @@ urlpatterns = [
     path('', include(apps.get_app_config('oscar').urls[0])),
 
     path("__debug__/", include("debug_toolbar.urls")),
+
+    path("folio/", include("folio.urls")),
 ]

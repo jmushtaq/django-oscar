@@ -87,6 +87,8 @@ INSTALLED_APPS = [
 
     'django_extensions',
     'debug_toolbar',
+    #'folio.apps.FolioConfig',
+    'folio',
 ]
 
 SITE_ID = 1
@@ -118,6 +120,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             str(BASE_DIR) + os.sep + 'templates',
+            str(BASE_DIR) + os.sep + 'folio/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -183,11 +186,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 
+#STATICFILES_DIRS = [
+#]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
