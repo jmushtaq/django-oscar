@@ -4,6 +4,7 @@
 {% block content_wrapper %}
 
   <!-- ======= Hero Section ======= -->
+<div>
   <div id="hero" class="home">
 
     <div class="container">
@@ -218,7 +219,7 @@
             <div class="col-lg-4 col-md-6">
               <div class="journal-info">
 
-                <a href="{% url "blog_single" %}"><img src="{% static "folio/assets/img/blog-post-1.jpg" %}" class="img-responsive" alt="img"></a>
+                <a href="{% url "folio:blog_single" %}"><img src="{% static "folio/assets/img/blog-post-1.jpg" %}" class="img-responsive" alt="img"></a>
 
                 <div class="journal-txt">
 
@@ -339,4 +340,5 @@
   </main><!-- End #main -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+</div>
 {% endblock %}

@@ -14,5 +14,5 @@ urlpatterns = [
 
     path("__debug__/", include("debug_toolbar.urls")),
 
-    path("folio/", include("folio.urls")),
+    path("folio/", include(("folio.urls", 'folio'), namespace='folio')),
 ]
