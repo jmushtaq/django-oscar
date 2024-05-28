@@ -88,7 +88,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'debug_toolbar',
     #'folio.apps.FolioConfig',
-    'folio',
+    'assets',
 ]
 
 SITE_ID = 1
@@ -120,7 +120,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             str(BASE_DIR) + os.sep + 'templates',
-            str(BASE_DIR) + os.sep + 'folio/templates',
+            str(BASE_DIR) + os.sep + 'assets/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
