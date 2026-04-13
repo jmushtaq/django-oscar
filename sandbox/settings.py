@@ -144,6 +144,9 @@ TEMPLATES = [
                 'oscar.apps.communication.notifications.context_processors.notifications',
                 'oscar.apps.checkout.context_processors.checkout',
                 'oscar.core.context_processors.metadata',
+
+                # Add your theme context processor
+                'themes.context_processors.active_theme',
             ],
             'debug': DEBUG,
         }
@@ -306,6 +309,9 @@ INSTALLED_APPS = [
 
     # Django apps that the sandbox depends on
     'django.contrib.sitemaps',
+
+    # My theme app
+    'themes',
 ]
 
 # Add Oscar's custom auth backend so users can sign in using their email

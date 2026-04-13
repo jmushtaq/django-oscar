@@ -1,0 +1,51 @@
+{% extends "oscar/catalogue/browse.html" %}
+{% load theme_tags %}
+
+{% block styles %}
+    {{ block.super }}
+    {% theme_css_variables %}
+    <style>
+        /* Override Oscar's default colors with theme variables */
+        .btn-primary {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-color) !important;
+            filter: brightness(90%);
+        }
+        
+        .price_color {
+            color: var(--primary-color) !important;
+        }
+        
+        .product_pod {
+            transition: transform 0.3s ease;
+        }
+        
+        .product_pod:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        a:not(.btn):hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .pagination > .active > a,
+        .pagination > .active > a:hover,
+        .pagination > .active > a:focus {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="party-banner" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
+        <h3 style="margin: 0;">🎉 Party Event Hire Specials</h3>
+        <p style="margin: 5px 0 0 0;">Premium props, flowers, and backdrops for your special event</p>
+    </div>
+    {{ block.super }}
+{% endblock %}

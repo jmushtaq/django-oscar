@@ -1,62 +1,115 @@
-# Packaging
-*.pyc
-__pycache__
-*.egg-info
-/dist/
-/build/
-/node_modules/
-
-# venv
-/bin/
-/lib/
-/share
-/pyvenv.cfg
-/pip-selfcheck.json
-
-# Vagrant
-.vagrant
-
-# Temporary/OS files
-*.swp
+.settings/
+.env
+venv/
+venv2/
+node_modules/
+#cronjobs
+.ropeproject/
+mooring/cache/*
+.ropeproject/
+csv
+*.csv
+*.xls*
 *.swo
-*.*~
-.~lock.*
-*.DS_Store
-.python-version
+*.png
+data_store/
+archive/
+protected_media/
 
-# IDE files
-.project
-.pydevproject
-.settings
-.idea
-.vscode
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
 
-# Docs
-/docs/build/*
-/src/oscar/static/
-*.pdf
-TODO
-venv
+# C extensions
+*.so
 
-# Test files
+# Distribution / packaging
+.Python
+env/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+*.bak
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
 .coverage
-.coverage\.*
-.noseids
-coverage.xml
-violations.txt
+.coverage*
+.cache
 nosetests.xml
-/.cache/
-/.pytest_cache/
-/htmlcov/*
-/.tox/*
+coverage.xml
+*,cover
+.hypothesis/
 
-# Sandbox content
-settings_local.py
-/sandbox/*.sqlite
-/sandbox/assets/
-/sandbox/public/
-/sandbox/whoosh_index/
-/sandbox/logs/
+# Translations
+*.mo
+*.pot
 
-# test stuff
-/tests/whoosh_index/
+# Django stuff:
+*.log
+staticfiles/
+staticfiles*
+
+# vim
+*.swp
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+.idea/
+
+# Eclipse project files
+/.pydevproject
+/.project
+
+**/local/
+*.map
+
+# media
+media/
+
+# Database/fixture dumps
+*.pgdump
+*.dump
+*.db
+*.sqlite3
+*.sql
+
+#parkstay import ignores
+import/
+importo.py
+
+#local uwsgi.ini files
+uwsgi*.ini
+*.djcache
+
+npm locks
+*-lock.json
+
+# npm build files
+#silrec/static/silrec_vue/static/*
+

@@ -1,0 +1,5 @@
+{% load theme_tags %}
+{% theme_css_variables %}
+{% if active_theme %}
+    <meta name="theme-color" content="{{ active_theme.primary_color }}">
+{% endif %}

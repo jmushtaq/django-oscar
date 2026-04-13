@@ -1,0 +1,263 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Selector - Party Event Hire</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
+        }
+        
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .theme-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .theme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .theme-preview {
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-info {
+            padding: 20px;
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .theme-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .theme-description {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .sample-product {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .sample-product h4 {
+            margin-bottom: 10px;
+        }
+        
+        .sample-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .active-badge {
+            background: #10b981;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .themes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Theme Customizer</h1>
+            <p>Choose a theme that matches your party event style</p>
+            <a href="/" class="back-link">← Back to Shop</a>
+        </div>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <div class="themes-grid">
+            {% for theme in themes %}
+            <div class="theme-card">
+                <div class="theme-preview" style="background: {{ theme.background_color }}; color: {{ theme.text_color }}; font-family: {{ theme.font_family }};">
+                    {% if theme.is_active %}
+                        <div class="active-badge">✓ Currently Active</div>
+                    {% endif %}
+                    <div style="background: {{ theme.primary_color }}; height: 3px; margin-bottom: 20px;"></div>
+                    <h3 style="color: {{ theme.primary_color }}; margin-bottom: 15px;">{{ theme.display_name }}</h3>
+                    
+                    <div class="sample-product" style="border: 1px solid {{ theme.primary_color }}20;">
+                        <h4>🎈 Premium Party Prop</h4>
+                        <p style="font-size: 0.9rem;">Elegant backdrop for special occasions</p>
+                        <span class="sample-badge" style="background: {{ theme.accent_color }}20; color: {{ theme.accent_color }};">Featured</span>
+                        <div style="margin-top: 10px;">
+                            <button style="background: {{ theme.primary_color }}; color: white; padding: 8px 16px; font-size: 0.9rem; border-radius: {% if theme.button_style == 'pill' %}999px{% elif theme.button_style == 'rounded' %}8px{% else %}0{% endif %};">
+                                Shop Now →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name">{{ theme.display_name }}</div>
+                    <div class="theme-description">
+                        {% if theme.name == 'elegant' %}✨ Perfect for weddings & formal events
+                        {% elif theme.name == 'modern' %}🎯 Clean & contemporary design
+                        {% elif theme.name == 'party' %}🎉 Vibrant & energetic celebrations
+                        {% elif theme.name == 'luxury' %}💎 Premium & sophisticated feel
+                        {% elif theme.name == 'floral' %}🌸 Natural & organic ambiance
+                        {% endif %}
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="theme" value="{{ theme.id }}">
+                        <button type="submit" style="background: {% if theme.is_active %}#10b981{% else %}{{ theme.primary_color }}{% endif %}; color: white;" 
+                                {% if theme.is_active %}disabled{% endif %}>
+                            {% if theme.is_active %}Active Theme{% else %}Apply Theme{% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div style="background: white; border-radius: 12px; padding: 25px; margin-top: 30px;">
+            <h3 style="margin-bottom: 15px;">💡 Theme Features for Your Party Hire Business</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <div>
+                    <strong>🎭 Party Props:</strong>
+                    <p style="color: #6b7280; font-size: 0.9rem; margin-top: 5px;">Display props with style using theme-optimized product cards</p>
+                </div>
+                <div>
+                    <strong>💐 Floral Arrangements:</strong>
+                    <p style="color: #6b7280; font-size: 0.9rem; margin-top: 5px;">Floral Fresh theme highlights nature-inspired designs</p>
+                </div>
+                <div>
+                    <strong>🎪 Backdrops:</strong>
+                    <p style="color: #6b7280; font-size: 0.9rem; margin-top: 5px;">Elegant themes showcase backdrop collections beautifully</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

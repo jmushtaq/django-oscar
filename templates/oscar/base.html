@@ -1,0 +1,195 @@
+{% load theme_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Party Event Hire{% endblock %}</title>
+    
+    {% theme_css_variables %}
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: var(--primary-color);
+            padding: 1rem 2rem;
+            color: white;
+        }
+        
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-accent {
+            background: var(--accent-color);
+            color: white;
+        }
+        
+        {% if button_style == 'pill' %}
+        .btn { border-radius: 999px; }
+        {% elif button_style == 'rounded' %}
+        .btn { border-radius: 8px; }
+        {% else %}
+        .btn { border-radius: 0; }
+        {% endif %}
+        
+        /* Cards */
+        .product-card {
+            background: white;
+            padding: 20px;
+            margin: 15px;
+            transition: all 0.3s ease;
+            {% if card_style == 'shadow' %}
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            {% elif card_style == 'border' %}
+            border: 2px solid var(--primary-color);
+            {% endif %}
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            {% if card_style == 'shadow' %}
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            {% endif %}
+        }
+        
+        /* Theme Switcher Button */
+        .theme-switcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .theme-switcher-btn {
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        /* Category Grid for Party Hire */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 40px 20px;
+        }
+        
+        .category-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    {% block navbar %}
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="brand">🎉 Party Event Hire</a>
+            <div class="nav-links">
+                <a href="/catalogue/">Shop</a>
+                <a href="/basket/">Cart</a>
+                <a href="/accounts/">Account</a>
+                {% if request.user.is_staff %}
+                <a href="/dashboard/themes/">Theme Settings</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    {% endblock %}
+    
+    {% block hero %}
+    <div class="hero-section">
+        <h1>Make Your Event Unforgettable</h1>
+        <p>Premium party props, elegant flowers, and stunning backdrops</p>
+        <a href="/catalogue/" class="btn btn-accent" style="margin-top: 20px;">Shop Now →</a>
+    </div>
+    {% endblock %}
+    
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+        {% block content %}
+        {% endblock %}
+    </div>
+    
+    {% if request.user.is_staff %}
+    <div class="theme-switcher">
+        <div class="theme-switcher-btn" onclick="window.location.href='/dashboard/themes/'">
+            🎨
+        </div>
+    </div>
+    {% endif %}
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

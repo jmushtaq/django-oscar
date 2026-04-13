@@ -1,0 +1,57 @@
+{% extends "oscar/base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 40px; border-radius: 10px;">
+                <h1>Welcome to Party Event Hire</h1>
+                <p>Your one-stop shop for premium party props, elegant flowers, and stunning backdrops</p>
+                <a href="{% url 'catalogue:index' %}" class="btn btn-primary btn-lg">Browse Collection →</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Popular Categories</h2>
+            <hr>
+        </div>
+        
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail text-center" style="padding: 20px;">
+                <div style="font-size: 3rem;">🎭</div>
+                <h3>Party Props</h3>
+                <p>Fun and unique props for any celebration</p>
+                <a href="#" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+        
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail text-center" style="padding: 20px;">
+                <div style="font-size: 3rem;">💐</div>
+                <h3>Flowers</h3>
+                <p>Elegant floral arrangements for all occasions</p>
+                <a href="#" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+        
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail text-center" style="padding: 20px;">
+                <div style="font-size: 3rem;">🎪</div>
+                <h3>Backdrops</h3>
+                <p>Stunning backdrops for photos and events</p>
+                <a href="#" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+        
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail text-center" style="padding: 20px;">
+                <div style="font-size: 3rem;">🍽️</div>
+                <h3>Tableware</h3>
+                <p>Beautiful table settings for your guests</p>
+                <a href="#" class="btn btn-primary">Shop Now</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

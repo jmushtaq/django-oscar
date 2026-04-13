@@ -6,6 +6,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps import views
 from django.urls import include, path
+from django.views.generic import TemplateView
+
 from oscar.views import handler403, handler404, handler500
 
 from apps.sitemaps import base_sitemaps
@@ -25,7 +27,12 @@ urlpatterns = [
         {'sitemaps': base_sitemaps}),
     path('sitemap-<slug:section>.xml', views.sitemap,
         {'sitemaps': base_sitemaps},
-        name='django.contrib.sitemaps.views.sitemap')
+        name='django.contrib.sitemaps.views.sitemap'),
+
+    # NEW - JM
+    path('dashboard/themes/', include('themes.urls')),
+    path('debug-theme/', TemplateView.as_view(template_name='debug_theme.html'), name='debug-theme'),
+    #path('', include('oscar.urls')),
 ]
 
 # Prefix Oscar URLs with language codes

@@ -1,0 +1,92 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard - Party Event Hire{% endblock %}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f3f4f6;
+        }
+        
+        .dashboard-header {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 20px;
+            padding: 10px 0;
+        }
+        
+        .breadcrumb a {
+            color: #6b7280;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            color: #374151;
+        }
+        
+        .page-header {
+            margin-bottom: 30px;
+        }
+        
+        .page-header h1 {
+            font-size: 1.8rem;
+            color: #111827;
+        }
+        
+        {% block extra_css %}{% endblock %}
+    </style>
+</head>
+<body>
+    <div class="dashboard-header">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <h2>🎉 Party Event Hire Dashboard</h2>
+            <div>
+                <a href="/" style="color: #6b7280; text-decoration: none; margin-right: 20px;">View Shop</a>
+                <span>Welcome, {{ request.user.username }}</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dashboard-container">
+        {% block breadcrumbs %}
+        <div class="breadcrumb">
+            <a href="/dashboard/">Dashboard</a> › {% block breadcrumb_title %}{% endblock %}
+        </div>
+        {% endblock %}
+        
+        <div class="page-header">
+            {% block header %}{% endblock %}
+        </div>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert" style="background: #d1fae5; color: #065f46; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        {% block dashboard_content %}{% endblock %}
+    </div>
+</body>
+</html>

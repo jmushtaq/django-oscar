@@ -1,0 +1,20 @@
+{% extends "oscar/catalogue/detail.html" %}
+{% load i18n %}
+
+{% block product_breadcrumb %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'home' %}">{% trans "Home" %}</a></li>
+        <li><a href="{% url 'catalogue:index' %}">{% trans "All products" %}</a></li>
+        {% for category in product.categories.all %}
+            <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+        {% endfor %}
+        <li class="active">{{ product.get_title }}</li>
+    </ul>
+{% endblock %}
+
+{% block product_review %}
+    <div class="party-badge" style="background: var(--accent-color); color: white; padding: 5px 10px; border-radius: 5px; display: inline-block; margin-bottom: 15px;">
+        🎈 Perfect for your special event
+    </div>
+    {{ block.super }}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% load theme_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Theme Debug</title>
+</head>
+<body>
+    <h1>Theme Debug Information</h1>
+    <p>Active Theme: {{ active_theme.display_name }}</p>
+    <p>Primary Color: {{ active_theme.primary_color }}</p>
+    <p>Secondary Color: {{ active_theme.secondary_color }}</p>
+    <p>Font Family: {{ active_theme.font_family }}</p>
+    
+    <h2>CSS Variables:</h2>
+    {% theme_css_variables %}
+    <div style="background: var(--primary-color); padding: 20px; color: white;">
+        This should be the primary color
+    </div>
+    
+    <p><a href="/dashboard/themes/">Change Theme</a></p>
+    <p><a href="/en-gb/catalogue/">Back to Catalogue</a></p>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% load theme_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    {% theme_css_variables %}
+    <title>Test Catalogue</title>
+</head>
+<body>
+    <h1 style="color: var(--primary-color);">Theme Test</h1>
+    <p>Active Theme: {{ active_theme.display_name }}</p>
+    <button style="background: var(--primary-color); color: white; padding: 10px;">Test Button</button>
+    <p><a href="/en-gb/catalogue/">Back to Catalogue</a></p>
+</body>
+</html>
