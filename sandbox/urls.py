@@ -50,3 +50,12 @@ if settings.DEBUG:
         path('404', handler404, {'exception': Exception()}),
         path('500', handler500),
     ]
+
+# Django Debug Toolbar
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
+
+
