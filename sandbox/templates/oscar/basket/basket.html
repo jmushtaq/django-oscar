@@ -1,0 +1,63 @@
+{% extends "oscar/basket/basket.html" %}
+{% load theme_tags %}
+
+{% block styles %}
+    {{ block.super }}
+    {% theme_css_variables %}
+    <style>
+        /* Theme overrides for basket page */
+        .btn-primary {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-color) !important;
+            filter: brightness(90%);
+        }
+        
+        .btn-danger {
+            background-color: var(--accent-color) !important;
+            border-color: var(--accent-color) !important;
+        }
+        
+        .basket-title {
+            background-color: var(--primary-color) !important;
+            color: white !important;
+        }
+        
+        .total {
+            color: var(--primary-color) !important;
+            font-weight: bold;
+        }
+        
+        a:not(.btn):hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .checkout-btn {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+        }
+        
+        .checkout-btn:hover {
+            background-color: var(--primary-color) !important;
+            filter: brightness(90%);
+        }
+    </style>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li class="active">Basket</li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="party-banner" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 15px; margin-bottom: 20px; border-radius: 8px;">
+        <h4 style="margin: 0;">🎉 Ready to book your party items?</h4>
+        <p style="margin: 5px 0 0 0;">Review your items below and proceed to checkout</p>
+    </div>
+    {{ block.super }}
+{% endblock %}

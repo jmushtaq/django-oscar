@@ -129,3 +129,16 @@ class Theme(models.Model):
                 name=theme_data['name'],
                 defaults=theme_data
             )
+
+class UserThemePreference(models.Model):
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='theme_preference')
+    theme = models.ForeignKey(Theme, on_delete=models.SET_NULL, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = 'User Theme Preference'
+        verbose_name_plural = 'User Theme Preferences'
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.theme.display_name if self.theme else 'Default'}"

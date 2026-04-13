@@ -14,4 +14,6 @@ python3.12 -m pip install setuptools
 (oscar) $ sandbox/manage.py runserver
 ```
 
+# Theme changer
+http://localhost:8000/dashboard/themes/
 

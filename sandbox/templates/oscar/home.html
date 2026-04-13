@@ -1,57 +1,126 @@
 {% extends "oscar/base.html" %}
 {% load i18n %}
+{% load theme_tags %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="jumbotron" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 40px; border-radius: 10px;">
-                <h1>Welcome to Party Event Hire</h1>
-                <p>Your one-stop shop for premium party props, elegant flowers, and stunning backdrops</p>
-                <a href="{% url 'catalogue:index' %}" class="btn btn-primary btn-lg">Browse Collection →</a>
-            </div>
+<div class="container-fluid">
+    <!-- Featured Categories -->
+    <div class="row" style="margin: 40px 0;">
+        <div class="col-md-12 text-center">
+            <h2>Shop by Category</h2>
+            <p style="color: #666;">Find everything you need for your perfect event</p>
         </div>
     </div>
     
     <div class="row">
-        <div class="col-md-12">
-            <h2>Popular Categories</h2>
-            <hr>
-        </div>
-        
-        <div class="col-md-3 col-sm-6">
-            <div class="thumbnail text-center" style="padding: 20px;">
+        <div class="col-md-2 col-sm-4 col-xs-6">
+            <div class="thumbnail text-center" style="padding: 20px; cursor: pointer;" onclick="location.href='/en-gb/catalogue/?category=props'">
                 <div style="font-size: 3rem;">🎭</div>
-                <h3>Party Props</h3>
-                <p>Fun and unique props for any celebration</p>
-                <a href="#" class="btn btn-primary">Shop Now</a>
+                <h4>Party Props</h4>
+                <small>150+ items</small>
             </div>
         </div>
-        
-        <div class="col-md-3 col-sm-6">
-            <div class="thumbnail text-center" style="padding: 20px;">
+        <div class="col-md-2 col-sm-4 col-xs-6">
+            <div class="thumbnail text-center" style="padding: 20px; cursor: pointer;" onclick="location.href='/en-gb/catalogue/?category=flowers'">
                 <div style="font-size: 3rem;">💐</div>
-                <h3>Flowers</h3>
-                <p>Elegant floral arrangements for all occasions</p>
-                <a href="#" class="btn btn-primary">Shop Now</a>
+                <h4>Flowers</h4>
+                <small>80+ arrangements</small>
             </div>
         </div>
-        
-        <div class="col-md-3 col-sm-6">
-            <div class="thumbnail text-center" style="padding: 20px;">
+        <div class="col-md-2 col-sm-4 col-xs-6">
+            <div class="thumbnail text-center" style="padding: 20px; cursor: pointer;" onclick="location.href='/en-gb/catalogue/?category=backdrops'">
                 <div style="font-size: 3rem;">🎪</div>
-                <h3>Backdrops</h3>
-                <p>Stunning backdrops for photos and events</p>
-                <a href="#" class="btn btn-primary">Shop Now</a>
+                <h4>Backdrops</h4>
+                <small>60+ designs</small>
             </div>
         </div>
-        
-        <div class="col-md-3 col-sm-6">
-            <div class="thumbnail text-center" style="padding: 20px;">
+        <div class="col-md-2 col-sm-4 col-xs-6">
+            <div class="thumbnail text-center" style="padding: 20px; cursor: pointer;" onclick="location.href='/en-gb/catalogue/?category=tableware'">
                 <div style="font-size: 3rem;">🍽️</div>
-                <h3>Tableware</h3>
-                <p>Beautiful table settings for your guests</p>
-                <a href="#" class="btn btn-primary">Shop Now</a>
+                <h4>Tableware</h4>
+                <small>200+ items</small>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6">
+            <div class="thumbnail text-center" style="padding: 20px; cursor: pointer;" onclick="location.href='/en-gb/catalogue/?category=lighting'">
+                <div style="font-size: 3rem;">✨</div>
+                <h4>Lighting</h4>
+                <small>40+ options</small>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6">
+            <div class="thumbnail text-center" style="padding: 20px; cursor: pointer;" onclick="location.href='/en-gb/catalogue/?category=furniture'">
+                <div style="font-size: 3rem;">🪑</div>
+                <h4>Furniture</h4>
+                <small>100+ pieces</small>
             </div>
         </div>
     </div>
+    
+    <!-- Featured Products -->
+    <div class="row" style="margin: 60px 0 40px 0;">
+        <div class="col-md-12 text-center">
+            <h2>Featured Items</h2>
+            <p>Most popular choices for this season</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        {% for product in featured_products|default:products|slice:":4" %}
+        <div class="col-md-3 col-sm-6">
+            <div class="product_pod">
+                <div class="product-image">
+                    {% with image=product.primary_image %}
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="{{ image.original.url|default:'https://via.placeholder.com/300x300?text=Party+Item' }}" 
+                                 alt="{{ product.get_title }}" class="img-responsive">
+                        </a>
+                    {% endwith %}
+                </div>
+                <div class="product-info" style="padding: 15px;">
+                    <div class="party-badge" style="background: var(--accent-color);">🔥 Hot Deal</div>
+                    <h3 style="font-size: 1.1rem; margin: 10px 0;">
+                        <a href="{{ product.get_absolute_url }}">{{ product.get_title|truncatechars:30 }}</a>
+                    </h3>
+                    <div class="price_color" style="font-size: 1.2rem;">${{ product.stockrecords.first.price|default:"0.00" }}</div>
+                    <form method="post" action="{% url 'basket:add' product.id %}" class="add-to-basket">
+                        {% csrf_token %}
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="btn btn-primary btn-block btn-sm" style="margin-top: 10px;">
+                            Add to Cart
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Why Choose Us -->
+    <div class="row" style="background: #f9fafb; padding: 40px; margin: 60px 0; border-radius: 10px;">
+        <div class="col-md-12 text-center">
+            <h2>Why Choose Party Event Hire?</h2>
+        </div>
+        <div class="col-md-3 text-center" style="margin-top: 30px;">
+            <div style="font-size: 2.5rem;">🚚</div>
+            <h4>Free Delivery</h4>
+            <p>On orders over $100</p>
+        </div>
+        <div class="col-md-3 text-center" style="margin-top: 30px;">
+            <div style="font-size: 2.5rem;">⭐</div>
+            <h4>Premium Quality</h4>
+            <p>Highest quality props</p>
+        </div>
+        <div class="col-md-3 text-center" style="margin-top: 30px;">
+            <div style="font-size: 2.5rem;">🔄</div>
+            <h4>Easy Returns</h4>
+            <p>30-day return policy</p>
+        </div>
+        <div class="col-md-3 text-center" style="margin-top: 30px;">
+            <div style="font-size: 2.5rem;">💳</div>
+            <h4>Secure Payment</h4>
+            <p>Multiple payment options</p>
+        </div>
+    </div>
+</div>
 {% endblock %}

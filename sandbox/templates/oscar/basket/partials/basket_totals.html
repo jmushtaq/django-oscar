@@ -1,0 +1,29 @@
+{% extends "oscar/basket/partials/basket_totals.html" %}
+{% load theme_tags %}
+
+{% block styles %}
+    {{ block.super }}
+    <style>
+        .basket-totals .total {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .btn-checkout {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+        }
+        
+        .btn-checkout:hover {
+            background-color: var(--primary-color) !important;
+            filter: brightness(90%);
+        }
+    </style>
+{% endblock %}
+
+{% block form %}
+    {{ block.super }}
+    <div class="party-offer" style="background: linear-gradient(135deg, var(--primary-color)10, var(--secondary-color)10); padding: 15px; border-radius: 8px; margin-top: 20px;">
+        <small>✨ Free delivery on orders over $100 | 30-day returns</small>
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "oscar/checkout/layout.html" %}
+{% load theme_tags %}
+
+{% block styles %}
+    {{ block.super }}
+    {% theme_css_variables %}
+    <style>
+        .btn-primary {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-color) !important;
+            filter: brightness(90%);
+        }
+        
+        .checkout-step .step-title {
+            background-color: var(--primary-color) !important;
+            color: white !important;
+        }
+        
+        a:hover {
+            color: var(--primary-color) !important;
+        }
+    </style>
+{% endblock %}
+
+{% block layout %}
+    <div class="checkout-header" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; padding: 20px; margin-bottom: 30px;">
+        <div class="container">
+            <h2 style="margin: 0;">Checkout</h2>
+            <p style="margin: 5px 0 0 0;">Complete your party hire booking</p>
+        </div>
+    </div>
+    {{ block.super }}
+{% endblock %}

@@ -5,7 +5,14 @@
     {{ block.super }}
     {% theme_css_variables %}
     <style>
-        /* Theme overrides */
+        /* Global theme overrides for all pages */
+        :root {
+            --primary-color: {{ active_theme.primary_color|default:"#6366f1" }};
+            --secondary-color: {{ active_theme.secondary_color|default:"#8b5cf6" }};
+            --accent-color: {{ active_theme.accent_color|default:"#ec4899" }};
+        }
+        
+        /* Navbar */
         .navbar-inverse {
             background-color: var(--primary-color) !important;
             border-color: var(--primary-color) !important;
@@ -17,6 +24,7 @@
             background-color: var(--secondary-color) !important;
         }
         
+        /* Buttons */
         .btn-primary {
             background-color: var(--primary-color) !important;
             border-color: var(--primary-color) !important;
@@ -27,12 +35,51 @@
             filter: brightness(90%);
         }
         
-        .price_color {
+        .btn-secondary {
+            background-color: var(--secondary-color) !important;
+            border-color: var(--secondary-color) !important;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-color) !important;
+            border-color: var(--accent-color) !important;
+        }
+        
+        /* Prices */
+        .price_color, .price, .basket-line-price {
+            color: var(--primary-color) !important;
+            font-weight: bold;
+        }
+        
+        /* Links */
+        a:not(.btn):hover {
             color: var(--primary-color) !important;
         }
         
-        a:not(.btn):hover {
-            color: var(--primary-color) !important;
+        /* Pagination */
+        .pagination > .active > a,
+        .pagination > .active > a:hover,
+        .pagination > .active > a:focus {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+        }
+        
+        /* Basket tables */
+        .basket-title {
+            background-color: var(--primary-color) !important;
+            color: white !important;
+        }
+        
+        /* Alert messages */
+        .alert-success {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+            color: white !important;
+        }
+        
+        /* Progress indicators */
+        .step.active .step-number {
+            background-color: var(--primary-color) !important;
         }
     </style>
 {% endblock %}

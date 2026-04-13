@@ -1,0 +1,22 @@
+{% extends "oscar/basket/partials/basket_line.html" %}
+{% load theme_tags %}
+
+{% block styles %}
+    {{ block.super }}
+    <style>
+        .basket-line-actions .btn {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .basket-line-actions .btn:hover {
+            background-color: var(--primary-color);
+            filter: brightness(90%);
+        }
+        
+        .basket-line-price {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}

@@ -27,3 +27,11 @@ def theme_selector(request):
         'themes': themes,
         'active_theme': active_theme,
     })
+
+def preview_theme(request, theme_id):
+    """Preview a theme without activating it"""
+    theme = get_object_or_404(Theme, id=theme_id)
+    return render(request, 'themes/theme_preview.html', {
+        'preview_theme': theme,
+        'themes': Theme.objects.all(),
+    })
