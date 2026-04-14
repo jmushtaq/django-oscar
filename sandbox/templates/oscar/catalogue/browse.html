@@ -6,6 +6,15 @@
     {% theme_css_variables %}
     <style>
         /* Override Oscar's default colors with theme variables */
+        .nav-link {
+            color: white !important;
+        }
+
+        .navbar {
+            background-color: var(--primary-color) !important;
+            border-color: var(--primary-color) !important;
+        }
+
         .btn-primary {
             background-color: var(--primary-color) !important;
             border-color: var(--primary-color) !important;
@@ -49,3 +58,5 @@
     </div>
     {{ block.super }}
 {% endblock %}
+{% comment %}
+{% endcomment %}
