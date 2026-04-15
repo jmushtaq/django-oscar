@@ -100,6 +100,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = location('public/static')
 STATICFILES_DIRS = (
     location('static/'),
+    #location('assets'),
     #BASE_DIR / "homepage" / "static" / "assets",
 )
 
@@ -107,7 +108,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-#print(STATICFILES_DIRS)
+print(STATICFILES_DIRS)
 
 STORAGES = {
     "default": {
@@ -504,4 +505,5 @@ ADD_BREADCRUMBS = env.bool('ADD_BREADCRUMBS', default=True)
 BASKET_UPDATE_NOTIFICATION = env.bool('BASKET_UPDATE_NOTIFICATION', default=False)
 SHOW_LANGUAGES = env.bool('SHOW_LANGUAGES', default=False)
 SHOW_LOGIN_REGISTER = env.bool('SHOW_LOGIN_REGISTER', default=False)
+SYSTEM_NAME = env.bool('SYSTEM_NAME', default='Simply Events')
 
