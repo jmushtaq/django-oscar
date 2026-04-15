@@ -1,12 +1,15 @@
 import os
 import environ
 import oscar
+from pathlib import Path
 
 env = environ.Env()
 
 # Path helper
 location = lambda x: os.path.join(
     os.path.dirname(os.path.realpath(__file__)), x)
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = env.bool('DEBUG', default=True)
 
@@ -97,11 +100,14 @@ STATIC_URL = '/static/'
 STATIC_ROOT = location('public/static')
 STATICFILES_DIRS = (
     location('static/'),
+    #BASE_DIR / "homepage" / "static" / "assets",
 )
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+#print(STATICFILES_DIRS)
 
 STORAGES = {
     "default": {
@@ -316,6 +322,7 @@ INSTALLED_APPS = [
 
     # My theme app
     'themes',
+    'homepage',
 ]
 
 # Add Oscar's custom auth backend so users can sign in using their email

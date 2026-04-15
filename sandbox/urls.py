@@ -17,6 +17,8 @@ admin.autodiscover()
 urlpatterns = [
     # Include admin as convenience. It's unsupported and only included
     # for developers.
+    path('home/', include('homepage.urls')),
+
     path('admin/', admin.site.urls),
 
     # i18n URLS need to live outside of i18n_patterns scope of Oscar
