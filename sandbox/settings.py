@@ -148,6 +148,8 @@ TEMPLATES = [
 
                 # Add your theme context processor
                 'themes.context_processors.active_theme',
+
+                'sandbox.context_processors.site_url',
             ],
             'debug': DEBUG,
         }
@@ -307,6 +309,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'easy_thumbnails',
     'django_tables2',
+    'django_extensions',
 
     # Django apps that the sandbox depends on
     'django.contrib.sitemaps',
@@ -489,4 +492,9 @@ if DEBUG:
         'debug_toolbar.panels.redirects.RedirectsPanel',
         'debug_toolbar.panels.profiling.ProfilingPanel',
     ]
+
+ADD_BREADCRUMBS = env.bool('ADD_BREADCRUMBS', default=True)
+BASKET_UPDATE_NOTIFICATION = env.bool('BASKET_UPDATE_NOTIFICATION', default=False)
+SHOW_LANGUAGES = env.bool('SHOW_LANGUAGES', default=False)
+SHOW_LOGIN_REGISTER = env.bool('SHOW_LOGIN_REGISTER', default=False)
 
