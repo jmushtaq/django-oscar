@@ -176,7 +176,7 @@ MIDDLEWARE = [
 
     # Allow languages to be selected
     'custom.middleware.ForceEnglishMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+#    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.common.CommonMiddleware',
 

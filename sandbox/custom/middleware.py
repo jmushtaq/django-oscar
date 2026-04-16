@@ -16,3 +16,6 @@ class ForceEnglishMiddleware(MiddlewareMixin):
         # Always activate English
         translation.activate('en-gb')
         request.LANGUAGE_CODE = 'en-gb'
+        # Set session and cookie
+        request.session['django_language'] = 'en-gb'
+
