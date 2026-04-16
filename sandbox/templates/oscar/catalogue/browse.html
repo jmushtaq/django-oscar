@@ -15,8 +15,57 @@
     {% if DJANGO_SETTINGS.ADD_BREADCRUMBS %}
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ homepage_url }}">{% trans "Home" %}</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ summary }}</li>
+                <!-- Home link - change to your custom homepage -->
+                <li class="breadcrumb-item">
+                    <a href="{% url 'homepage:homepage' %}">{% trans "Home" %}</a>
+                </li>
+                
+                <!-- All Products link -->
+                <li class="breadcrumb-item">
+                    <a href="{% url 'catalogue:index' %}">{% trans "All Products" %}</a>
+                </li>
+                
+                {% if category %}
+                    <!-- Build category hierarchy -->
+                    {% for ancestor in category.get_ancestors %}
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'catalogue:category' category_slug=ancestor.slug pk=ancestor.id %}">
+                                {{ ancestor.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    
+                    <!-- Current category (active) -->
+                    <li class="breadcrumb-item active" aria-current="page">
+                        {{ category.name }}
+                    </li>
+                {% elif product %}
+                    <!-- If viewing a product, show its category hierarchy -->
+                    {% with product.categories.first as product_category %}
+                        {% if product_category %}
+                            {% for ancestor in product_category.get_ancestors %}
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'catalogue:category' category_slug=ancestor.slug pk=ancestor.id %}">
+                                        {{ ancestor.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'catalogue:category' category_slug=product_category.slug pk=product_category.id %}">
+                                    {{ product_category.name }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endwith %}
+                    <li class="breadcrumb-item active" aria-current="page">
+                        {{ product.title }}
+                    </li>
+                {% else %}
+                    <!-- Just show summary as active -->
+                    <li class="breadcrumb-item active" aria-current="page">
+                        {{ summary }}
+                    </li>
+                {% endif %}
             </ol>
         </nav>
     {% endif %}

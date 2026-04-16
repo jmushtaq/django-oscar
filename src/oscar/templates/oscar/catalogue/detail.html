@@ -19,7 +19,7 @@
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ homepage_url }}">{% trans "Home" %}</a></li>
+            KK<li class="breadcrumb-item"><a href="{{ homepage_url }}">{% trans "Home" %}</a></li>
             {% with category=product.get_categories.first %}
                 {% for c in category.get_ancestors_and_self %}
                     <li class="breadcrumb-item"><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
