@@ -437,6 +437,13 @@ THUMBNAIL_REDIS_URL = env('THUMBNAIL_REDIS_URL', default=None)
 # easy-thumbnail. See https://github.com/SmileyChris/easy-thumbnails/issues/641#issuecomment-2291098096
 THUMBNAIL_DEFAULT_STORAGE_ALIAS = "default"
 
+THUMBNAIL_ALIASES = {
+    '': {
+        'portfolio': {'size': (400, 300), 'crop': True},
+        'portfolio_small': {'size': (200, 150), 'crop': True},
+    },
+}
+
 # Django 1.6 has switched to JSON serializing for security reasons, but it does not
 # serialize Models. We should resolve this by extending the
 # django/core/serializers/json.Serializer to have the `dumps` function. Also
