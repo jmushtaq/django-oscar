@@ -11,12 +11,14 @@ from django.views.generic import TemplateView
 from oscar.views import handler403, handler404, handler500
 
 from apps.sitemaps import base_sitemaps
+from homepage.views import HomeView
 
 admin.autodiscover()
 
 urlpatterns = [
     # Include admin as convenience. It's unsupported and only included
     # for developers.
+    path('', HomeView.as_view(), name='homepage'),
     path('home/', include('homepage.urls')),
 
     path('admin/', admin.site.urls),
@@ -34,13 +36,16 @@ urlpatterns = [
     # NEW - JM
     path('dashboard/themes/', include('themes.urls')),
     path('debug-theme/', TemplateView.as_view(template_name='debug_theme.html'), name='debug-theme'),
-    #path('', include('oscar.urls')),
+
+    # Include Oscar URLs WITHOUT language prefix - remove i18n_patterns
+    path('', include(apps.get_app_config('oscar').urls[0])),
 ]
 
-# Prefix Oscar URLs with language codes
-urlpatterns += i18n_patterns(
-    path('', include(apps.get_app_config('oscar').urls[0])),
-)
+# REMOVE THIS BLOCK - it's adding the /en-gb/ prefix
+# # Prefix Oscar URLs with language codes
+# urlpatterns += i18n_patterns(
+#     path('', include(apps.get_app_config('oscar').urls[0])),
+# )
 
 if settings.DEBUG:
 
@@ -59,5 +64,3 @@ if settings.DEBUG:
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
     ]
-
-

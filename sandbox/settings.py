@@ -175,12 +175,14 @@ MIDDLEWARE = [
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 
     # Allow languages to be selected
+    'custom.middleware.ForceEnglishMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'django.middleware.common.CommonMiddleware',
 
     # Ensure a valid basket is added to the request instance for every request
-    'oscar.apps.basket.middleware.BasketMiddleware',
+    #'oscar.apps.basket.middleware.BasketMiddleware',
+    'custom.middleware.CustomBasketMiddleware',
 ]
 
 ROOT_URLCONF = 'urls'
@@ -323,6 +325,7 @@ INSTALLED_APPS = [
 
     # My theme app
     'themes',
+    #'custom.catalogue',
     'homepage',
 ]
 
@@ -423,6 +426,7 @@ OSCAR_ORDER_STATUS_CASCADE = {
     'Cancelled': 'Cancelled',
     'Complete': 'Shipped',
 }
+OSCAR_DEFAULT_CURRENCY = 'AUD'
 
 # Sorl
 # ====
